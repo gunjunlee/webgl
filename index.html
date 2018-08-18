@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="./style.css">
+        <script src="./gl.js"></script>
+    </head>
+    <body>
+        <canvas>Your browser does not seem to support HTML5 canvas.</canvas>
+    </body>
+    <script type="x-shader/x-vertex" id="vertex-shader">
+        #version 100
+
+        //attribute
+        attribute vec4 position;
+        
+        //varying
+        varying vec4 color;
+    
+        //uniform
+        uniform mat4 mv_matrix;
+        uniform mat4 proj_matrix;
+    
+        void main() {
+            gl_Position = proj_matrix * mv_matrix * position;
+            color = position * 2.0 + vec4(0.5, 0.5, 0.5, 0.0);
+        }
+    </script>
+    <script type="x-shader/x-fragment" id="fragment-shader">
+        #version 100
+        
+        //varying
+        //varying vec4 color;
+
+        void main(void) {
+            gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+        }
+    </script>
+    <script>
+    </script>
+</html>
