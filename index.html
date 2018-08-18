@@ -9,6 +9,9 @@
     <script type="x-shader/x-vertex" id="vertex-shader">
         #version 100
 
+        precision mediump int;
+        precision mediump float;
+
         //attribute
         attribute vec4 position;
         
@@ -27,11 +30,14 @@
     <script type="x-shader/x-fragment" id="fragment-shader">
         #version 100
         
+        precision mediump int;
+        precision mediump float;
+        
         //varying
-        //varying vec4 color;
+        varying vec4 color;
 
         void main(void) {
-            gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+            gl_FragColor = color;
         }
     </script>
     <script>

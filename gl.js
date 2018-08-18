@@ -76,24 +76,6 @@ function setupWebGL (evt) {
     program = gl.createProgram();
   
     var source = document.querySelector("#vertex-shader").innerHTML;
-    // source = `
-    // #version 100
-
-    // //attribute
-    // attribute vec4 position;
-    
-    // //varying
-    // varying vec4 color;
-
-    // //uniform
-    // uniform mat4 mv_matrix;
-    // uniform mat4 proj_matrix;
-
-    // void main() {
-    //     gl_Position = proj_matrix * mv_matrix * position;
-    //     color = position * 2.0 + vec4(0.5, 0.5, 0.5, 0.0);
-    // }
-    // `;
     var vertexShader = gl.createShader(gl.VERTEX_SHADER);
     gl.shaderSource(vertexShader,source);
     gl.compileShader(vertexShader);
@@ -154,15 +136,11 @@ function cleanup() {
 }
 
 function render(){
-    console.log("render called");
     var seconds = new Date().getTime() / 1000 ;
-    console.log(seconds);
-    // var color = [Math.cos(seconds), Math.sin(seconds), 0, 1];
+
     var color = [0, 0, 0, 1];
     gl.clearColor(color[0], color[1], color[2], color[3]);
     gl.clear(gl.COLOR_BUFFER_BIT);
-    // gl.clearBufferfv(gl.COLOR, 0, color);
-    // gl.clearBufferfv(gl.DEPTH_STENCIL, 0, 1.0, 0);
 
     proj_matrix = get_proj_matrix(60.0, width/height, 0.01, 1000.0);
     gl.uniformMatrix4fv(proj_loc, false, proj_matrix);
@@ -176,7 +154,7 @@ function render(){
                     0, 0, 0, 1];
     mv_matrix = multiplyMatrices(temp_rot1, temp_rot2);
     gl.uniformMatrix4fv(mv_loc, false, mv_matrix);
-    // console.log(proj_matrix);
+    
     gl.drawArrays(gl.TRIANGLES, 0, 36);
 }
 
